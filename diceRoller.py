@@ -182,6 +182,15 @@ def HealthModifier(message_content,messageAuthor):
     operationResult = 0
     if messageAction == "add":
         for x in healthDictionary:
+            if len(messageCommand) == 3 and messageCommand[2].capitalize() in healthDictionary.keys():
+                keyChecker = messageCommand[2].capitalize()
+                operationResult = healthDictionary[keyChecker] + abs(int(messageCommand[1]))
+                if operationResult > healthDictionaryReset[keyChecker]:
+                    healthDictionary[keyChecker] = healthDictionaryReset[keyChecker]
+                else:
+                    healthDictionary[keyChecker] = operationResult
+                print(f"{keyChecker}: {healthDictionary[keyChecker]} HP")
+                return f"{keyChecker}: {healthDictionary[keyChecker]} HP"
             if nick == x:
                 operationResult = healthDictionary[x] + abs(int(messageCommand[1]))
                 if operationResult > healthDictionaryReset[x]:
