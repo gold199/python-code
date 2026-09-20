@@ -39,15 +39,15 @@ healthDictionary= {
                 "Kryssik":36,
             }
 
-healthDictionaryReset= { 
-                "Valeris":10,
-                "Globiglob":10,
-                "Dango":10,
-                "Larynx":10,
-                "Nevardo":10,
-                "Kairox":10,
-                "Bugs Bunny":10,
-                "Kryssik":10,
+healthDictionaryReset= {
+                "Valeris":29,
+                "Globiglob":34,
+                "Dango":25,
+                "Larynx":24,
+                "Nevardo":38,
+                "Kairox":29,
+                "Bugs Bunny":30,
+                "Kryssik":36,
             }
 
                 
@@ -170,7 +170,7 @@ def ViewHealth(message_content,messageAuthor):
                 return f"{nick}: {healthDictionary[x]} HP"
     elif messageAction == "health":
         for x in healthDictionary:
-            concatstring = concatstring +  f"{nick}: {healthDictionary[x]} HP \n"
+            concatstring = concatstring +  f"{x}: {healthDictionary[x]} HP \n"
             print(concatstring)
         print("final: " + concatstring)
         return concatstring
@@ -183,24 +183,27 @@ def HealthModifier(message_content,messageAuthor):
     if messageAction == "add":
         for x in healthDictionary:
             if nick == x:
-                operationResult = healthDictionary[x] + int(messageCommand[1])
-                healthDictionary[x] = operationResult
+                operationResult = healthDictionary[x] + abs(int(messageCommand[1]))
+                if operationResult > healthDictionaryReset[x]:
+                    healthDictionary[x] = healthDictionaryReset[x]
+                else:
+                    healthDictionary[x] = operationResult
                 print(f"{nick}: {healthDictionary[x]} HP")
                 return f"{nick}: {healthDictionary[x]} HP"
     elif messageAction == "minus":
         for x in healthDictionary:
             if nick == x:
-                operationResult = healthDictionary[x] - int(messageCommand[1])
+                operationResult = healthDictionary[x] - abs(int(messageCommand[1]))
+                if operationResult < 0 :
+                    operationResult = 0
                 healthDictionary[x] = operationResult
                 print(f"{nick}: {healthDictionary[x]} HP")
                 return f"{nick}: {healthDictionary[x]} HP"
     elif messageAction == "reset":
         for x in healthDictionary:
-            healthDictionary[x] = healthDictionaryReset[x]
-            print(f"{nick}: {healthDictionary[x]} HP")
-            return "HP restaurado a todos"
-
-
+                healthDictionary[x] = healthDictionaryReset[x]
+                print(f"{x}: {healthDictionary[x]} HP")
+        return f"HP restaurado a todos"
 
 ###### Codigo para mandar fotos #######
 def PhotoSending(message_content):

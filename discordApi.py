@@ -36,8 +36,9 @@ async def on_message(message):
          await message.channel.send(diceRoller.ViewHealth(message_content,message_author))
     elif message_content.startswith('!add') or message_content.startswith('!minus') or  message_content.startswith('!reset') == True:
         if str(message_author) == DM_ACTION and message_content.startswith('!reset'):
-             await message.channel.send(diceRoller.HealthModifier(message_content,message_author))
-        await message.channel.send(diceRoller.HealthModifier(message_content,message_author))
+            await message.channel.send(diceRoller.HealthModifier(message_content,message_author))
+        else:
+            await message.channel.send(diceRoller.HealthModifier(message_content,message_author))
 
 
 if __name__ == "__main__":
