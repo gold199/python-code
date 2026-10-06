@@ -39,6 +39,10 @@ async def on_message(message):
             await message.channel.send(diceRoller.HealthModifier(message_content,message_author))
         else:
             await message.channel.send(diceRoller.HealthModifier(message_content,message_author))
+    elif message_content.startswith('!ini')  == True:
+        await message.channel.send(diceRoller.Initiative())
+    elif message_content.startswith('!surprise')  == True:
+            await message.channel.send(diceRoller.SurpriseIni())
 
 
 if __name__ == "__main__":

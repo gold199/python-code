@@ -29,27 +29,48 @@ calcDictionary= {
             }
 
 healthDictionary= { 
-                "Valeris":29,
-                "Globiglob":34,
-                "Dango":25,
-                "Larynx":24,
+                "Valeris":45,
+                "Globiglob":38,
+                "Dango":38,
+                "Larynx":38,
                 "Nevardo":38,
-                "Kairox":29,
-                "Bugs Bunny":30,
-                "Kryssik":36,
+                "Kairox":45,
+                "Bugs Bunny":43,
+                "Kryssik":59,
             }
 
 healthDictionaryReset= {
-                "Valeris":29,
-                "Globiglob":34,
-                "Dango":25,
-                "Larynx":24,
-                "Nevardo":38,
-                "Kairox":29,
-                "Bugs Bunny":30,
-                "Kryssik":36,
+                "Valeris":45,
+                "Globiglob":52,
+                "Dango":32,
+                "Larynx":38,
+                "Nevardo":56,
+                "Kairox":51,
+                "Bugs Bunny":43,
+                "Kryssik":59,
             }
 
+initiativeDictionary= {
+                "Valeris":1,
+                "Globiglob":3,
+                "Dango":2,
+                "Larynx":3,
+                "Nevardo":2,
+                "Kairox":3,
+                "Bugs Bunny":0,
+                "Kryssik":1,
+            }
+
+# asd= {
+#                 "Valeris":7,
+#                 "Globiglob":8,
+#                 "Dango":6,
+#                 "Larynx":6,
+#                 "Nevardo":8,
+#                 "Kairox":8,
+#                 "Bugs Bunny":7,
+#                 "Kryssik":9,
+#             }
                 
 def __init__(self, diceNumber, diceFace):
         self.diceNumber = diceNumber
@@ -174,7 +195,7 @@ def ViewHealth(message_content,messageAuthor):
             print(concatstring)
         print("final: " + concatstring)
         return concatstring
-    
+
 def HealthModifier(message_content,messageAuthor):
     messageCommand = message_content.split()
     messageAction = messageCommand[0].replace("!", "")
@@ -237,6 +258,26 @@ def PhotoSending(message_content):
     embed.set_image(url=f"attachment://{fileNameConcat}")
     return (file, embed)
 
+def Initiative():
+    res = ""
+    for x in initiativeDictionary:   
+        dice = random.randrange(1,21)
+        res += f"{x} ha sacado un { dice + initiativeDictionary[x]} de iniciativa \n"
+        print(f" Resultado Tirada iniciativa: {dice}")
+    return res
+
+def SurpriseIni():
+    res = ""
+    for x in initiativeDictionary:   
+        dice1 = random.randrange(1,21)
+        dice2 = random.randrange(1,21)
+        print(f" Resultado Tirada1: {dice1}, Tirada2: {dice2}")
+        if dice1 <= dice2:
+            res += f"{x} ha sacado un { dice1 + initiativeDictionary[x]} de iniciativa \n"
+        else:
+            res += f"{x} ha sacado un { dice2 + initiativeDictionary[x]} de iniciativa \n"
+        print(res)
+    return res
 
 
 
