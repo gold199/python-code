@@ -88,8 +88,8 @@ def AuthorChangeName(messageAuthor):
     for x in listAuthor:
         if str(messageAuthor) == x:
             return listAuthor[x]
-        # else:
-        #     return messageAuthor
+        else:
+            return messageAuthor
     
 
 def StringAnalizer(message_content, messageAuthor):
@@ -250,9 +250,11 @@ def PhotoSending(message_content):
 def Initiative():
     res = ""
     for x in initiativeDictionary:   
-        dice = random.randrange(1,21)
-        res += f"{x} ha sacado un { dice + initiativeDictionary[x]} de iniciativa \n"
-        print(f" Resultado Tirada iniciativa: {dice}")
+        dice = DiceRoll(1,20,"d20",x)
+        diceSplit = dice.split()
+        arrayRes = NumberParser(diceSplit)
+        totalRes = int(arrayRes) + initiativeDictionary[x]
+        res += f"{x} ha sacado un {totalRes} de iniciativa \n"
     return res
 
 def SurpriseIni():
@@ -267,6 +269,190 @@ def SurpriseIni():
             res += f"{x} ha sacado un { dice2 + initiativeDictionary[x]} de iniciativa \n"
         print(res)
     return res
+
+def NewDiceRoller(message_content,messageAuthor):
+    messageCommand = message_content.split()
+    messageAction = messageCommand[0].replace("!", "")
+    res = ""
+    match messageAction:
+
+        case "d4":
+            if len(messageCommand) == 1:
+                res = DiceRoll(1, 4, "d4", messageAuthor)
+            elif len(messageCommand) == 2:
+                if messageCommand[1].startswith("+"):
+                    plus = int(messageCommand[1].replace("+",""))
+                    res = DiceRoll(1, 4, "d4", messageAuthor)
+                    diceSplit = res.split()
+                    arrayRes = NumberParser(diceSplit)
+                    totalRes = int(arrayRes) + plus
+                    res = res.replace(str(arrayRes), str(totalRes))
+                else:
+                    res = DiceRoll(int(messageCommand[1]), 4, "d4", messageAuthor)
+            elif len(messageCommand) == 3:
+                res = DiceRoll(int(messageCommand[1]), 4, "d4", messageAuthor)
+                plus = int(messageCommand[2].replace("+",""))
+                diceSplit = res.split()
+                arrayRes = NumberParser(diceSplit)
+                totalRes = int(arrayRes) + plus
+                res = res.replace(str(arrayRes), str(totalRes))
+
+        case "d6":
+            if len(messageCommand) == 1:
+                res = DiceRoll(1, 6, "d6", messageAuthor)
+            elif len(messageCommand) == 2:
+                if messageCommand[1].startswith("+"):
+                    plus = int(messageCommand[1].replace("+",""))
+                    res = DiceRoll(1, 6, "d6", messageAuthor)
+                    diceSplit = res.split()
+                    arrayRes = NumberParser(diceSplit)
+                    totalRes = int(arrayRes) + plus
+                    res = res.replace(str(arrayRes), str(totalRes))
+                else:
+                    res = DiceRoll(int(messageCommand[1]), 6, "d6", messageAuthor)
+            elif len(messageCommand) == 3:
+                res = DiceRoll(int(messageCommand[1]), 6, "d6", messageAuthor)
+                plus = int(messageCommand[2].replace("+",""))
+                diceSplit = res.split()
+                arrayRes = NumberParser(diceSplit)
+                totalRes = int(arrayRes) + plus
+                res = res.replace(str(arrayRes), str(totalRes))
+
+        case "d8":
+            if len(messageCommand) == 1:
+                res = DiceRoll(1, 8, "d8", messageAuthor)
+            elif len(messageCommand) == 2:
+                if messageCommand[1].startswith("+"):
+                    plus = int(messageCommand[1].replace("+",""))
+                    res = DiceRoll(1, 8, "d8", messageAuthor)
+                    diceSplit = res.split()
+                    arrayRes = NumberParser(diceSplit)
+                    totalRes = int(arrayRes) + plus
+                    res = res.replace(str(arrayRes), str(totalRes))
+                else:
+                    res = DiceRoll(int(messageCommand[1]), 8, "d8", messageAuthor)
+            elif len(messageCommand) == 3:
+                res = DiceRoll(int(messageCommand[1]), 8, "d8", messageAuthor)
+                plus = int(messageCommand[2].replace("+",""))
+                diceSplit = res.split()
+                arrayRes = NumberParser(diceSplit)
+                totalRes = int(arrayRes) + plus
+                res = res.replace(str(arrayRes), str(totalRes))
+
+        case "d10":
+            if len(messageCommand) == 1:
+                res = DiceRoll(1, 10, "d10", messageAuthor)
+            elif len(messageCommand) == 2:
+                if messageCommand[1].startswith("+"):
+                    plus = int(messageCommand[1].replace("+",""))
+                    res = DiceRoll(1, 10, "d10", messageAuthor)
+                    diceSplit = res.split()
+                    arrayRes = NumberParser(diceSplit)
+                    totalRes = int(arrayRes) + plus
+                    res = res.replace(str(arrayRes), str(totalRes))
+                else:
+                    res = DiceRoll(int(messageCommand[1]), 10, "d10", messageAuthor)
+            elif len(messageCommand) == 3:
+                res = DiceRoll(int(messageCommand[1]), 10, "d10", messageAuthor)
+                plus = int(messageCommand[2].replace("+",""))
+                diceSplit = res.split()
+                arrayRes = NumberParser(diceSplit)
+                totalRes = int(arrayRes) + plus
+                res = res.replace(str(arrayRes), str(totalRes))
+
+        case "d12":
+            if len(messageCommand) == 1:
+                res = DiceRoll(1, 12, "d12", messageAuthor)
+            elif len(messageCommand) == 2:
+                if messageCommand[1].startswith("+"):
+                    plus = int(messageCommand[1].replace("+",""))
+                    res = DiceRoll(1, 12, "d12", messageAuthor)
+                    diceSplit = res.split()
+                    arrayRes = NumberParser(diceSplit)
+                    totalRes = int(arrayRes) + plus
+                    res = res.replace(str(arrayRes), str(totalRes))
+                else:
+                    res = DiceRoll(int(messageCommand[1]), 12, "d12", messageAuthor)
+            elif len(messageCommand) == 3:
+                res = DiceRoll(int(messageCommand[1]), 12, "d12", messageAuthor)
+                plus = int(messageCommand[2].replace("+",""))
+                diceSplit = res.split()
+                arrayRes = NumberParser(diceSplit)
+                totalRes = int(arrayRes) + plus
+                res = res.replace(str(arrayRes), str(totalRes)) 
+
+        case "d20":
+            if len(messageCommand) == 1:
+                res = DiceRoll(1, 20, "d20", messageAuthor)
+            elif len(messageCommand) == 2:
+                if messageCommand[1].startswith("+"):
+                    plus = int(messageCommand[1].replace("+",""))
+                    res = DiceRoll(1, 20, "d20", messageAuthor)
+                    diceSplit = res.split()
+                    arrayRes = NumberParser(diceSplit)
+                    totalRes = int(arrayRes) + plus
+                    res = res.replace(str(arrayRes), str(totalRes))
+                else:
+                    res = DiceRoll(int(messageCommand[1]), 20, "d20", messageAuthor)
+            elif len(messageCommand) == 3:
+                res = DiceRoll(int(messageCommand[1]), 20, "d20", messageAuthor)
+                plus = int(messageCommand[2].replace("+",""))
+                diceSplit = res.split()
+                arrayRes = NumberParser(diceSplit)
+                totalRes = int(arrayRes) + plus
+                res = res.replace(str(arrayRes), str(totalRes))
+
+        case "d100":
+             if len(messageCommand) == 1:
+                res = DiceRoll(1, 100, "d100", messageAuthor)
+             elif len(messageCommand) == 2:
+                if messageCommand[1].startswith("+"):
+                    plus = int(messageCommand[1].replace("+",""))
+                    res = DiceRoll(1, 100, "d100", messageAuthor)
+                    diceSplit = res.split()
+                    arrayRes = NumberParser(diceSplit)
+                    totalRes = int(arrayRes) + plus
+                    res = res.replace(str(arrayRes), str(totalRes))
+                else:
+                    res = DiceRoll(int(messageCommand[1]), 100, "d100", messageAuthor)
+             elif len(messageCommand) == 3:
+                res = DiceRoll(int(messageCommand[1]), 100, "d100", messageAuthor)
+                plus = int(messageCommand[2].replace("+",""))
+                diceSplit = res.split()
+                arrayRes = NumberParser(diceSplit)
+                totalRes = int(arrayRes) + plus
+                res = res.replace(str(arrayRes), str(totalRes))
+
+    return res
+
+def NumberParser(text):
+    resText = ""
+    for x in text:
+        try:
+            int(x)
+            resText = x
+        except:
+                continue
+    return resText
+
+
+# def DiceRoll(diceNumber, diceFaceValue, diceFaceKey, messageAuthor):
+#     result = 0
+#     nick = AuthorChangeName(messageAuthor)
+#     print(f"Tirada de un {diceFaceKey} por {nick}")
+#     for x in range(diceNumber):
+#         resultRandom = random.randrange(1,diceFaceValue + 1)
+#         result += resultRandom
+#         print(f"tirada {x + 1} : {resultRandom}")
+#     if diceNumber == 1:
+#         if result == 20:
+
+#             return f"Tirada de un {diceFaceKey}, NAT 20 tu turno de brillar {nick}"
+        
+#         return f"Tirada de un {diceFaceKey} por {nick}, resultado: {result}"
+#     else:
+#         return f"Tirada de un {diceFaceKey} por {nick}, resultado total: {result}"
+
 
 
 

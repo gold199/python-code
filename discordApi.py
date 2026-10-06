@@ -42,7 +42,9 @@ async def on_message(message):
     elif message_content.startswith('!ini')  == True:
         await message.channel.send(diceRoller.Initiative())
     elif message_content.startswith('!surprise')  == True:
-            await message.channel.send(diceRoller.SurpriseIni())
+        await message.channel.send(diceRoller.SurpriseIni())
+    elif message_content.startswith('!d4') or message_content.startswith('!d6') or message_content.startswith('!d8') or message_content.startswith('!d10') or message_content.startswith('!d12') or message_content.startswith('!d20') or message_content.startswith('!d100') == True:
+        await message.channel.send(diceRoller.NewDiceRoller(message_content,message_author))
 
 
 if __name__ == "__main__":
