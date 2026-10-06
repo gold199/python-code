@@ -60,17 +60,6 @@ initiativeDictionary= {
                 "Bugs Bunny":0,
                 "Kryssik":1,
             }
-
-# asd= {
-#                 "Valeris":7,
-#                 "Globiglob":8,
-#                 "Dango":6,
-#                 "Larynx":6,
-#                 "Nevardo":8,
-#                 "Kairox":8,
-#                 "Bugs Bunny":7,
-#                 "Kryssik":9,
-#             }
                 
 def __init__(self, diceNumber, diceFace):
         self.diceNumber = diceNumber
